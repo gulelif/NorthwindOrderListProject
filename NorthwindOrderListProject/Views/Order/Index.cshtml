@@ -1,0 +1,54 @@
+﻿@model List<NorthwindOrderListProject.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+<h3>@ViewData["Title"]</h3>
+<hr/>
+<form>
+    <button asp-action="Index" asp-controller="Shipper" class="btn btn-primary">Create Shipper</button>
+    <table class="table table-responsive table-hoover">
+        <thead>
+            <tr class="table-active">
+                <th>ID</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Employee</th>
+               
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model!=null&& Model.Any())
+            {
+            
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>  <a href="/Order/OrderDetails/@item.OrderId">@item.OrderId</a></td>
+                        <td>@item.OrderDate</td>
+                        <td>@item.Customer.ContactName</td>
+                        <td>@item.Employee.FirstName @item.Employee.LastName</td>
+                      
+
+                    </tr>
+                 
+                   
+                    
+                }
+               
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">
+                        <div>
+                            No Orders acailable this moment!
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
